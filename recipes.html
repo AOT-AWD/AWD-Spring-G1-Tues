@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes - Jenna's Kitchen</title>
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+  <script defer src="script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a href="index.html" class="nav-link">
+        <img width="90" src="Recipies Logo 2.png" alt="Logo" href="index.html">
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
+          <li class="nav-item">
+  <a class="nav-link" href="cart.html">
+    🛒 Cart <span id="cart-count" class="badge"
+      style="background:#E8783A; color:white; border-radius:10px; padding:2px 7px; font-size:0.7rem;">0</span>
+  </a>
+</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- Page Header -->
+  <div style="background-color:#5C2E00; color:white; padding:50px 20px; text-align:center;">
+    <h1 style="font-family:'Abril Fatface',serif;">Find a Recipe</h1>
+    <p style="font-size:1.1rem; max-width:500px; margin:0.5rem auto 0;">
+      Enter the ingredients you have, set your filters, and we'll find something delicious.
+    </p>
+  </div>
+ 
+  <!-- Search & Filters -->
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="ingredient-section">
+ 
+          <!-- Ingredients -->
+          <h5 class="lora-font mb-3" style="color:#5C2E00;">Your Ingredients</h5>
+          <div class="input-group mb-2">
+            <input type="text" id="ingredient-input" class="form-control"
+              placeholder="e.g. chicken, tomato, garlic..." onkeypress="handleEnter(event)">
+            <button onclick="addIngredient()" class="btn btn-success">Add</button>
+          </div>
+          <div id="ingredient-tags" class="mb-4"></div>
+ 
+          <!-- Filters toggle -->
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <h5 class="lora-font mb-0" style="color:#5C2E00;">Filters</h5>
+            <button class="btn btn-sm" style="background:transparent;border:1px solid #8B4513;color:#8B4513;font-size:0.78rem;padding:2px 10px;"
+              data-bs-toggle="collapse" data-bs-target="#filtersPanel">
+              Show / Hide
+            </button>
+          </div>
+ 
+          <div class="collapse show" id="filtersPanel">
+            <div class="row g-3 mb-4">
+ 
+              <!-- Diet -->
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Diet</label>
+                <select id="filter-diet" class="form-select form-select-sm">
+                  <option value="">Any diet</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="gluten free">Gluten Free</option>
+                  <option value="ketogenic">Ketogenic</option>
+                  <option value="paleo">Paleo</option>
+                  <option value="pescetarian">Pescetarian</option>
+                  <option value="whole30">Whole30</option>
+                  <option value="lacto-vegetarian">Lacto-Vegetarian</option>
+                  <option value="ovo-vegetarian">Ovo-Vegetarian</option>
+                </select>
+              </div>
+ 
+              <!-- Cuisine -->
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Cuisine</label>
+                <select id="filter-cuisine" class="form-select form-select-sm">
+                  <option value="">Any cuisine</option>
+                  <option value="american">American</option>
+                  <option value="italian">Italian</option>
+                  <option value="mexican">Mexican</option>
+                  <option value="asian">Asian</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="japanese">Japanese</option>
+                  <option value="indian">Indian</option>
+                  <option value="french">French</option>
+                  <option value="mediterranean">Mediterranean</option>
+                  <option value="greek">Greek</option>
+                  <option value="middle eastern">Middle Eastern</option>
+                  <option value="thai">Thai</option>
+                  <option value="korean">Korean</option>
+                  <option value="spanish">Spanish</option>
+                  <option value="british">British</option>
+                  <option value="caribbean">Caribbean</option>
+                </select>
+              </div>
+ 
+              <!-- Meal Type -->
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Meal Type</label>
+                <select id="filter-type" class="form-select form-select-sm">
+                  <option value="">Any type</option>
+                  <option value="main course">Main Course</option>
+                  <option value="side dish">Side Dish</option>
+                  <option value="dessert">Dessert</option>
+                  <option value="breakfast">Breakfast</option>
+                  <option value="salad">Salad</option>
+                  <option value="soup">Soup</option>
+                  <option value="appetizer">Appetizer</option>
+                  <option value="snack">Snack</option>
+                  <option value="beverage">Beverage</option>
+                </select>
+              </div>
+ 
+              <!-- Max Ready Time -->
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">
+                  Max Ready Time: <span id="time-label" style="color:#E8783A;">Any</span>
+                </label>
+                <input type="range" class="form-range" id="filter-time" min="10" max="120" step="5" value="120" oninput="updateTimeLabel()">
+              </div>
+ 
+              <!-- Max Calories -->
+              <div class="col-sm-6 col-md-4">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Max Calories / Serving</label>
+                <select id="filter-calories" class="form-select form-select-sm">
+                  <option value="">No limit</option>
+                  <option value="300">Under 300 kcal</option>
+                  <option value="500">Under 500 kcal</option>
+                  <option value="700">Under 700 kcal</option>
+                  <option value="1000">Under 1000 kcal</option>
+                </select>
+              </div>
+ 
+              <!-- Intolerances -->
+              <div class="col-12">
+                <label class="form-label" style="color:#5C2E00;font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Intolerances (exclude)</label>
+                <div class="d-flex flex-wrap gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="gluten" id="cb-gluten">
+                    <label class="form-check-label" for="cb-gluten">Gluten</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="dairy" id="cb-dairy">
+                    <label class="form-check-label" for="cb-dairy">Dairy</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="egg" id="cb-egg">
+                    <label class="form-check-label" for="cb-egg">Egg</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="peanut" id="cb-peanut">
+                    <label class="form-check-label" for="cb-peanut">Peanut</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="soy" id="cb-soy">
+                    <label class="form-check-label" for="cb-soy">Soy</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="tree nut" id="cb-treenut">
+                    <label class="form-check-label" for="cb-treenut">Tree Nut</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="shellfish" id="cb-shellfish">
+                    <label class="form-check-label" for="cb-shellfish">Shellfish</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input intolerance-cb" type="checkbox" value="sesame" id="cb-sesame">
+                    <label class="form-check-label" for="cb-sesame">Sesame</label>
+                  </div>
+                </div>
+              </div>
+ 
+            </div><!-- /row -->
+          </div><!-- /collapse -->
+ 
+          <!-- Actions -->
+          <div class="d-flex gap-2 flex-wrap">
+            <button onclick="searchRecipes()" class="btn btn-primary">🔍 Search Recipes</button>
+            <button onclick="resetAll()" class="btn btn-danger">↺ Start Over</button>
+          </div>
+          <div id="search-status" class="mt-3"></div>
+ 
+        </div><!-- /ingredient-section -->
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Results -->
+  <section class="container mb-5">
+    <div id="api-results" class="row g-4"></div>
+  </section>
+ 
+  <footer class="text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h5>Contact Jenna</h5>
+        <p>123 Cooking Lane, Food City</p>
+        <p>Phone: (555) 420-6767</p>
+        <p>Email: chef@jennascooking.com</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <h5>Follow Me</h5>
+        <a href="https://www.instagram.com/josemiersvorg/" class="text-white me-3">Instagram</a>
+        <a href="https://www.facebook.com/jose.mier.9699/" class="text-white me-3">Facebook</a>
+        <a href="https://x.com/JoseMie76203964" class="text-white">Twitter</a>
+      </div>
+      <div class="col-md-3 text-center">
+        <h5>Quick Links</h5>
+        <a href="index.html" class="text-white d-block">Home</a>
+        <a href="about.html" class="text-white d-block">About</a>
+        <a href="recipes.html" class="text-white d-block">Recipes</a>
+        <a href="cart.html" class="text-white d-block">Cart</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Newsletter</h5>
+        <p>Get new recipes delivered to your inbox.</p>
+        <form onsubmit="handleNewsletter(event)">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email" required>
+            <button class="btn btn-success" type="submit">Subscribe</button>
+          </div>
+          <p id="newsletter-msg" style="font-size:0.82rem; margin-top:8px;"></p>
+        </form>
+      </div>
+    </div>
+    <hr class="border-secondary mt-4">
+    <p class="text-center mb-0" style="color:#aaa;">© 2026 Jenna's Kitchen. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
