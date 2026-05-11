@@ -1,0 +1,536 @@
+/* ============================================================
+   JENNA'S KITCHEN — Clean White Minimal
+   Palette: Pure White · Deep Navy · Electric Blue · Cool Grays
+   Vibe: Sleek food blog / modern editorial / airy & refined
+   ============================================================ */
+
+:root {
+  --white:        #FFFFFF;
+  --off-white:    #F8F9FC;
+  --gray-100:     #F0F2F7;
+  --gray-200:     #E2E6F0;
+  --gray-400:     #B0B8CC;
+  --gray-600:     #6E7A99;
+  --gray-800:     #3A4260;
+  --black:        #062732;
+  --terra:        #2563EB;
+  --terra-hover:  #1D4ED8;
+  --terra-light:  #EEF3FF;
+  --terra-dim:    rgba(37,99,235,0.10);
+  --shadow-xs:    0 1px 4px rgba(14,18,40,0.06);
+  --shadow-sm:    0 2px 12px rgba(14,18,40,0.08);
+  --shadow-md:    0 6px 28px rgba(14,18,40,0.10);
+  --shadow-lg:    0 16px 48px rgba(14,18,40,0.14);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: "Lora", serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Navbar ───────────────────────────────────────────────── */
+.navbar {
+  background-color: var(--white) !important;
+  border-bottom: 1px solid var(--gray-200);
+  font-family: "Lora", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-toggler {
+  border-color: var(--gray-200) !important;
+}
+
+.nav-link {
+  color: var(--gray-600) !important;
+  transition: color 0.2s;
+  padding: 0.25rem 1rem !important;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--terra) !important;
+  background-color: transparent !important;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.45);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(14,18,40,0.1) 0%, rgba(14,18,40,0.55) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--white);
+  padding: 2rem;
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-family: "Abril Fatface", serif;
+  font-size: 3.8rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.80);
+  font-style: italic;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary {
+  background-color: var(--terra);
+  border-color: var(--terra);
+  color: #fff;
+  font-family: "Lora", serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 2px;
+  transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  background-color: var(--terra-hover);
+  border-color: var(--terra-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.30);
+}
+
+.btn-success {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+  font-family: "Lora", serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 2px;
+  transition: background-color 0.2s, transform 0.15s;
+}
+.btn-success:hover {
+  background-color: var(--gray-800);
+  border-color: var(--gray-800);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: transparent;
+  border: 1px solid var(--gray-400);
+  color: var(--gray-600);
+  font-family: "Lora", serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-danger:hover {
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.btn-lg {
+  font-size: 0.8rem !important;
+  padding: 0.75rem 2rem !important;
+}
+.btn-sm {
+  font-size: 0.68rem !important;
+  padding: 0.4rem 1rem !important;
+}
+
+/* ── Recipe Cards ─────────────────────────────────────────── */
+.recipe-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: var(--white);
+  height: 100%;
+}
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.recipe-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.recipe-card:hover img {
+  transform: scale(1.04);
+}
+.recipe-card .card-body {
+  padding: 1.2rem 1.3rem 1.5rem;
+}
+.recipe-card .card-title {
+  font-family: "Abril Fatface", serif;
+  font-size: 1.05rem;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.recipe-card .card-text {
+  font-size: 0.86rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ── Section Headings ─────────────────────────────────────── */
+.section-title {
+  font-family: "Abril Fatface", serif;
+  color: var(--black);
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.01em;
+}
+.section-divider {
+  width: 36px;
+  height: 2px;
+  background: var(--terra);
+  margin: 0 auto 2.5rem;
+  border: none;
+}
+
+/* ── "How It Works" section ───────────────────────────────── */
+section[style*="#f5ebe0"],
+section[style*="background-color: #f5ebe0"] {
+  background-color: var(--gray-100) !important;
+}
+
+section[style*="#f5ebe0"] p,
+section[style*="background-color: #f5ebe0"] p {
+  color: var(--gray-600) !important;
+  font-style: italic;
+}
+
+section[style*="#f5ebe0"] h5,
+section[style*="background-color: #f5ebe0"] h5 {
+  color: var(--black) !important;
+}
+
+/* ── About Hero ───────────────────────────────────────────── */
+.about-hero {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 100px 20px;
+  text-align: center;
+}
+.about-hero h1 {
+  font-family: "Abril Fatface", serif;
+  font-size: 3rem;
+  letter-spacing: -0.01em;
+}
+.about-hero p {
+  color: rgba(255,255,255,0.65);
+  font-style: italic;
+}
+
+.about-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  background: var(--white);
+  padding: 1.5rem;
+  height: 100%;
+}
+.about-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+/* ── Page Header (recipes.html) ───────────────────────────── */
+div[style*="background-color:#5C2E00"],
+div[style*="background-color: #5C2E00"] {
+  background-color: var(--black) !important;
+}
+div[style*="background-color:#5C2E00"] h1,
+div[style*="background-color:#5C2E00"] p {
+  color: var(--white) !important;
+}
+
+/* ── Ingredient Section ───────────────────────────────────── */
+.ingredient-section {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+h5.lora-font,
+h5[style*="5C2E00"],
+.ingredient-section h5 {
+  color: var(--black) !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.ingredient-tag {
+  display: inline-block;
+  background-color: var(--terra-light);
+  color: var(--terra-hover);
+  padding: 4px 14px;
+  border-radius: 2px;
+  margin: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Form controls */
+.form-select,
+.form-control {
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  color: var(--black);
+  border-radius: 2px;
+  font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-select:focus,
+.form-control:focus {
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px var(--terra-dim);
+  outline: none;
+}
+.form-label,
+label[style*="5C2E00"] {
+  color: var(--gray-600) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+.form-check-input:checked {
+  background-color: var(--terra);
+  border-color: var(--terra);
+}
+.form-check-label { color: var(--gray-800); font-size: 0.88rem; }
+.form-range::-webkit-slider-thumb { background: var(--terra); }
+.form-range::-webkit-slider-runnable-track { background: var(--gray-200); }
+
+#time-label { color: var(--terra) !important; }
+
+/* Alerts */
+.alert-info {
+  background-color: var(--gray-100);
+  border-color: var(--gray-200);
+  color: var(--gray-800);
+  border-radius: 2px;
+}
+.alert-warning {
+  background-color: #FFF8EE;
+  border-color: #FFDEA0;
+  color: #7A5500;
+  border-radius: 2px;
+}
+.alert-danger {
+  background-color: #FFF3F0;
+  border-color: #FFCFC7;
+  color: var(--terra-hover);
+  border-radius: 2px;
+}
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badge[style*="4A6741"] {
+  background: #E8F2E8 !important;
+  color: #2D6B35 !important;
+  font-weight: 700;
+}
+.badge[style*="8B4513"] {
+  background: var(--terra-light) !important;
+  color: var(--terra-hover) !important;
+  font-weight: 700;
+}
+
+/* ── Favorites Cards ──────────────────────────────────────── */
+.fav-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  background: var(--white);
+  height: 100%;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.fav-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.fav-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
+.fav-card:hover img { filter: brightness(0.35); }
+.fav-card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+.fav-card:hover .fav-card-overlay { opacity: 1; }
+.fav-card-overlay .overlay-title {
+  color: white;
+  font-family: 'Abril Fatface', serif;
+  font-size: 1rem;
+  text-align: center;
+}
+.fav-card-overlay a {
+  background-color: var(--terra);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 2px;
+  font-family: 'Lora', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.fav-card-overlay a:hover { background-color: var(--terra-hover); }
+.fav-card-body { padding: 1rem 1.2rem 1.3rem; }
+.fav-card-body h5 {
+  font-family: 'Abril Fatface', serif;
+  color: var(--black);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.fav-card-body p {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Skeleton ─────────────────────────────────────────────── */
+.fav-skeleton {
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+}
+.skeleton-img {
+  width: 100%; height: 220px;
+  background: linear-gradient(90deg, #f0f2f7 25%, #e2e6f0 50%, #f0f2f7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+.skeleton-body { padding: 1rem 1.2rem; }
+.skeleton-line {
+  height: 13px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #f0f2f7 25%, #e2e6f0 50%, #f0f2f7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Carousel ─────────────────────────────────────────────── */
+.carousel-caption {
+  background: rgba(0,0,0,0.55) !important;
+  border-radius: 3px !important;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer {
+  background-color: var(--black) !important;
+  margin-top: 4rem;
+}
+footer h5 {
+  color: var(--white);
+  font-family: "Abril Fatface", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+footer p { color: var(--gray-600); margin-bottom: 0.4rem; font-size: 0.88rem; }
+footer a {
+  color: var(--gray-600) !important;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+footer a:hover { color: var(--terra) !important; }
+footer hr { border-color: #1a1f36 !important; }
+footer .text-center.mb-0 { color: #555 !important; font-size: 0.8rem; }
+
+/* ── Overrides ────────────────────────────────────────────── */
+p[style*="color:#7A5C3A"] { color: var(--gray-600) !important; font-style: italic; }
+p[style*="color:#aaa"]    { color: #555 !important; }
+h5[style*="dark-brown"]   { color: var(--black) !important; }
